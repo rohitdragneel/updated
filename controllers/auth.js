@@ -78,6 +78,9 @@ exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
+  const name=req.body.name;
+  const address=req.body.address;
+  const phone=req.body.phone;
   User.findOne({ email: email })
     .then(userDoc => {
       if (userDoc) {
@@ -93,6 +96,9 @@ exports.postSignup = (req, res, next) => {
           const user = new User({
             email: email,
             password: hashedPassword,
+            name:name,
+            address:address,
+            phoneno:phone,
             cart: { items: [] }
           });
           return user.save();
